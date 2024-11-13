@@ -6,6 +6,7 @@ import cashapp from '@/app/assets/cashapp.webp';
 import paypal from '@/app/assets/paypal.png';
 import ether from '@/app/assets/ether.svg';
 import tether from '@/app/assets/tether.svg';
+import herobg from '@/app/assets/herobg.jpg';
 import { FaTelegramPlane } from 'react-icons/fa';
 import Tabs from './components/Tabs';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
@@ -62,8 +63,7 @@ export default function Home() {
 			<section
 				className='h-[100vh] md:h-[50vh] relative flex flex-col md:flex-row items-center px-6 bg-cover bg-center bg-no-repeat'
 				style={{
-					backgroundImage:
-						"url('https://images.unsplash.com/photo-1636953099671-481a72803051?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+					backgroundImage: `url(${herobg.src})`,
 				}}>
 				<div className='grid grid-cols-1 md:grid-cols-2 w-full'>
 					<div className='flex flex-col items-center justify-center relative mb-8 md:mb-0 text-center md:text-left'>

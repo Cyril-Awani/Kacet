@@ -1,10 +1,34 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 
+interface CoinApiResponse {
+	symbol: string;
+	name: string;
+	current_price: number;
+	price_change_percentage_24h: number;
+	price_change_percentage_7d_in_currency: number | null; // Can be null if not available
+	total_volume: number;
+	market_cap: number;
+	sparkline_in_7d: {
+		price: number[]; // Array of prices for the sparkline (7-day chart)
+	};
+}
+
+interface CoinData {
+	symbol: string;
+	name: string;
+	price: string;
+	change_24h: string;
+	change_7d: string;
+	volume: string;
+	marketCap: string;
+	sparkline: number[];
+}
+
 const SpecificCoinsTable = () => {
-	const [coinsData, setCoinsData] = useState([]);
+	const [coinsData, setCoinsData] = useState<CoinData[]>([]);
 	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
+	const [error, setError] = useState<string | null>(null);
 
 	// Fetch data for specific coins
 	const fetchSpecificCoins = async () => {
@@ -26,11 +50,10 @@ const SpecificCoinsTable = () => {
 			const data = await response.json();
 
 			// Process data to get relevant fields for the table
-			const coins = data.map((coin) => ({
+			const coins = data.map((coin: CoinApiResponse) => ({
 				symbol: coin.symbol.toUpperCase(),
 				name: coin.name,
 				price: coin.current_price.toFixed(2),
-
 				change_24h: coin.price_change_percentage_24h.toFixed(1),
 				change_7d:
 					coin.price_change_percentage_7d_in_currency?.toFixed(1) || 'N/A',
@@ -89,7 +112,9 @@ const SpecificCoinsTable = () => {
 
 									<td
 										className={`px-4 py-2 text-right ${
-											coin.change_24h >= 0 ? 'text-green-500' : 'text-red-500'
+											parseFloat(coin.change_24h) >= 0
+												? 'text-green-500'
+												: 'text-red-500'
 										}`}>
 										{coin.change_24h}%
 									</td>

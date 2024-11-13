@@ -16,7 +16,13 @@ const Tabs = () => {
 	const [inputValue, setInputValue] = useState<number>(0);
 	const [result, setResult] = useState<number>(0);
 
-	const rates = {
+	type RateType = {
+		deriv: { [key: string]: number };
+		cryptocurrency: { [key: string]: { [key: string]: number } };
+		giftcards: { [key: string]: number };
+	};
+
+	const rates: RateType = {
 		deriv: {
 			deposit: 1730,
 			withdrawal: 1700,
@@ -186,7 +192,7 @@ const Tabs = () => {
 				(activeTab === 'giftcards' && activeSubTab === 'sell') ? (
 					<div className='relative max-w-md mx-auto p-6 rounded-lg shadow-lg my-3 overflow-hidden'>
 						<Image
-							src={getImageForTab()}
+							src={getImageForTab() ?? Derivbg} // Fallback to a default image if undefined
 							alt='Background Image'
 							fill
 							style={{ objectFit: 'cover' }}
