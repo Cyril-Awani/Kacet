@@ -1,4 +1,7 @@
+'use client';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Nav } from './components/Nav';
 import bitcoin from '@/app/assets/bitcoin.svg';
 import deriv from '@/app/assets/deriv.jpg';
@@ -18,6 +21,11 @@ import SpecificCoinsTable from './components/SpecificCoinsTable';
 import ForexTable from './components/ForexTable';
 
 export default function Home() {
+	const router = useRouter();
+
+	const handleAdminRedirect = () => {
+		router.push('/admin'); // Redirects to the admin page
+	};
 	const paymentImages = [
 		{
 			src: cashapp,
@@ -221,12 +229,10 @@ export default function Home() {
 						"url('https://images.unsplash.com/photo-1636953099671-481a72803051?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
 				}}>
 				<div className='container mx-auto text-center'>
-					<h2 className='text-4xl font-bold mb-3'>
-						Start Trading Bitcoin Today
-					</h2>
-					<p className='text-lg mb-3'>
-						Join Our Telegram Channel For Free Tutorials and Courses to become a
-						master Trader
+					<h2 className='text-xl font-bold mb-3'>Start Trading Today</h2>
+					<p className='text-md mb-3'>
+						Join Us on Our Telegram Channel For Free Tutorials and Courses to
+						become a Master Trader
 					</p>
 
 					<div className='px-8 py-2'>
@@ -234,12 +240,16 @@ export default function Home() {
 							<div className='relative group max-w-[200px]'>
 								<div className='absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt max-w-[150]' />
 
-								<button className='relative px-6 py-3 bg-black rounded-lg leading-none flex items-center space-x-4'>
-									<span className='text-gray-100'>Join Us</span>
-									<span className='pl-2 text-indigo-400 group-hover:text-gray-100 transition duration-200'>
-										<FaTelegramPlane size={20} />
-									</span>
-								</button>
+								<Link href='https://t.me/KACETXchange' passHref legacyBehavior>
+									<a target='_blank' rel='noopener noreferrer'>
+										<button className='relative px-6 py-3 bg-black rounded-lg leading-none flex items-center space-x-4'>
+											<span className='text-gray-100'>Join Us</span>
+											<span className='pl-2 text-indigo-400 group-hover:text-gray-100 transition duration-200'>
+												<FaTelegramPlane size={20} />
+											</span>
+										</button>
+									</a>
+								</Link>
 							</div>
 						</div>
 					</div>
@@ -247,9 +257,10 @@ export default function Home() {
 			</section>
 
 			{/* Footer */}
-			<footer className='py-8 bg-gray-900 text-center'>
+			<footer className='flex items-center gap-2 py-8 bg-gray-900  text-center'>
 				<p className='text-gray-400'>
-					&copy; 2024 KacetXchange. All rights reserved.
+					&copy; 2024 KacetXchange. All rights reserved{' '}
+					<span onClick={handleAdminRedirect}> | Managed by Admin</span>
 				</p>
 			</footer>
 		</div>

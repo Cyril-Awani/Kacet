@@ -1,6 +1,7 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import axios from 'axios'; // Ensure axios is installed
 import Derivbg from '@/app/assets/Deriv_Logo.jpg';
 import Crypto from '@/app/assets/Crypto.png';
 import Giftcard from '@/app/assets/Gift-card.webp';
@@ -9,24 +10,14 @@ import { DollarSign, ArrowUpCircle, Gift } from 'lucide-react';
 const Tabs = () => {
 	const [activeTab, setActiveTab] = useState('deriv');
 	const [activeSubTab, setActiveSubTab] = useState('deposit');
-
 	const [selectedCrypto, setSelectedCrypto] = useState('Bitcoin');
 	const [selectedGiftcard, setSelectedGiftcard] = useState('Amazon $25');
-
 	const [inputValue, setInputValue] = useState<number>(0);
 	const [result, setResult] = useState<number>(0);
 
-	type RateType = {
-		deriv: { [key: string]: number };
-		cryptocurrency: { [key: string]: { [key: string]: number } };
-		giftcards: { [key: string]: number };
-	};
-
-	const rates: RateType = {
-		deriv: {
-			deposit: 1730,
-			withdrawal: 1700,
-		},
+	// State to store dynamic rates fetched from the API
+	const [rates, setRates] = useState({
+		deriv: { deposit: 1730, withdrawal: 1700 },
 		cryptocurrency: {
 			Bitcoin: { buy: 1750, sell: 1680 },
 			Ethereum: { buy: 1800, sell: 1720 },
@@ -42,7 +33,25 @@ const Tabs = () => {
 			'iTunes $100': 1787,
 			'Google Play': 1700,
 		},
-	};
+	});
+
+	// Fetch rates from backend (example API)
+	useEffect(() => {
+		const fetchRates = async () => {
+			try {
+				const response = await axios.get('/api/getRates'); // Fetch rates from the API
+				setRates(response.data); // Store the rates data in the state
+			} catch (error) {
+				console.error('Error fetching rates:', error);
+			}
+		};
+
+		fetchRates(); // Call the function to fetch rates
+	}, []); // Empty dependency array ensures this runs only once when the component mounts
+
+	if (!rates) {
+		return <p>Loading rates...</p>; // Show loading text while fetching data
+	}
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = parseFloat(e.target.value);
@@ -83,17 +92,18 @@ const Tabs = () => {
 
 		if (activeTab === 'deriv') {
 			if (activeSubTab === 'deposit') {
-				message = `I'm looking to deposit $${inputValue} to my Deriv account @ ₦${result.toLocaleString()}.`;
+				message = `I'm looking to deposit $${inputValue} to my Deriv account`;
 			} else if (activeSubTab === 'withdrawal') {
-				message = `I'd like to withdraw $${inputValue} from my Deriv account, @ ₦${result.toLocaleString()}.`;
+				message = `I'd like to withdraw $${inputValue} from my Deriv account.`;
 			}
 		} else if (activeTab === 'cryptocurrency') {
-			message = `I'd like to ${activeSubTab} $${inputValue} worth of ${selectedCrypto} @ ₦${result.toLocaleString()}.`;
+			message = `I'd like to ${activeSubTab} $${inputValue} worth of ${selectedCrypto}`;
 		} else if (activeTab === 'giftcards') {
-			message = `I want to sell ${inputValue} ${selectedGiftcard} giftcards @ ₦${result.toLocaleString()}.`;
+			message = `I want to sell ${inputValue} ${selectedGiftcard} giftcards.`;
+			//₦${result.toLocaleString(),@ ₦${result.toLocaleString()}.
 		}
 
-		const phoneNumber = '+2347075252049';
+		const phoneNumber = '+2348114310177';
 		const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
 			message,
 		)}`;
@@ -126,11 +136,11 @@ const Tabs = () => {
 				{['deriv', 'giftcards', 'cryptocurrency'].map((tab) => (
 					<button
 						key={tab}
-						className={`py-2 px-4 text-sm text-black font-bold uppercase flex items-center transition-colors duration-200 ${
+						className={`py-2 px-4 text-xs text-black font-bold uppercase flex items-center transition-colors duration-200 ${
 							activeTab === tab
 								? `border-b-4 border-white-500 z-10000 text-black bg-white 
-              ${tab === 'deriv' ? 'rounded-tl-lg' : ''} 
-              ${tab === 'cryptocurrency' ? 'rounded-tr-lg' : ''}`
+                  ${tab === 'deriv' ? 'rounded-tl-lg' : ''} 
+                  ${tab === 'cryptocurrency' ? 'rounded-tr-lg' : ''}`
 								: 'text-white hover:border-b-4 hover:border-white'
 						}`}
 						onClick={() => handleTabClick(tab)}>
@@ -143,15 +153,15 @@ const Tabs = () => {
 			</div>
 
 			{/* Sub Tabs */}
-			<div className=' relative flex border-b mt-4'>
+			<div className='relative pl-5 flex pr-10 md:pr-0 border-b mt-2'>
 				{activeTab === 'deriv' &&
 					['deposit', 'withdrawal'].map((subTab) => (
 						<button
 							key={subTab}
-							className={`py-2 px-4 text-sm font-medium ${
+							className={`px-4 text-sm font-medium ${
 								activeSubTab === subTab
 									? ' text-white scale-125 font-black'
-									: 'text-white hover:border-b-4 hover:border-white'
+									: 'text-gray-400 hover:border-b-4 hover:border-white'
 							}`}
 							onClick={() => handleSubTabClick(subTab)}>
 							{subTab.charAt(0).toUpperCase() + subTab.slice(1)}
@@ -175,7 +185,7 @@ const Tabs = () => {
 							className={`py-2 px-4 text-sm font-medium ${
 								activeSubTab === subTab
 									? ' text-white scale-125 font-black'
-									: 'text-white hover:border-b-4 hover:border-white'
+									: 'text-gray-400 hover:border-b-4 hover:border-white'
 							}`}
 							onClick={() => handleSubTabClick(subTab)}>
 							{subTab.charAt(0).toUpperCase() + subTab.slice(1)}
@@ -190,7 +200,7 @@ const Tabs = () => {
 				(activeTab === 'cryptocurrency' && activeSubTab === 'buy') ||
 				(activeTab === 'cryptocurrency' && activeSubTab === 'sell') ||
 				(activeTab === 'giftcards' && activeSubTab === 'sell') ? (
-					<div className='relative max-w-md mx-auto p-6 rounded-lg shadow-lg my-3 overflow-hidden'>
+					<div className='relative max-w-md mx-auto py-4 px-6 rounded-lg shadow-lg overflow-hidden'>
 						<Image
 							src={getImageForTab() ?? Derivbg} // Fallback to a default image if undefined
 							alt='Background Image'
@@ -258,11 +268,12 @@ const Tabs = () => {
 								/>
 							</div>
 							{/* Estimated Value Display */}
-							{result > 0 && (
-								<p className='mt-4'>
-									Estimated total: ₦{result.toLocaleString()}
-								</p>
-							)}
+							{/* {result > 0 && (
+    <p className='mt-4'>
+        Estimated total: ₦{result.toLocaleString()}
+    </p>
+)} */}
+
 							{/* WhatsApp Button */}
 							{result > 0 && (
 								<button
