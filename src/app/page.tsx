@@ -82,7 +82,7 @@ export default function Home() {
 							Trade your digital assets instantly with the best rates, swiftly
 							and securely.
 						</p>
-						<div className='flex justify-center md:justify-start gap-1'>
+						<div className='block md:flex justify-center md:justify-start gap-1'>
 							<div className='px-8 md:px-0 lg:px-6 py-2'>
 								<div className='grid'>
 									<div className='relative group mw-[300px]'>
