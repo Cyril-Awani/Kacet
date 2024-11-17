@@ -295,13 +295,15 @@ const Tabs = () => {
 )} */}
 
 							{/* WhatsApp Button */}
-							{result > 0 && (
-								<button
-									className='bg-green-500 text-white rounded-lg p-2 mt-2'
-									onClick={handleSubmit}>
-									Proceed via WhatsApp
-								</button>
-							)}
+							<div className='flex pr-2 justify-end'>
+								{result > 0 && (
+									<button
+										className='bg-green-500 ml-auto text-white rounded-lg p-2 mt-2'
+										onClick={handleSubmit}>
+										Proceed via WhatsApp
+									</button>
+								)}
+							</div>
 						</div>
 					</div>
 				) : (
