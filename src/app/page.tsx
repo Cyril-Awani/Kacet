@@ -69,7 +69,7 @@ export default function Home() {
 		<div className='bg-white text-white'>
 			<Nav />
 			<section
-				className='h-[80vh] md:h-[60vh] relative flex flex-col md:flex-row items-center px-6 bg-cover bg-center bg-no-repeat'
+				className='h-[100vh] md:h-[60vh] relative flex flex-col md:flex-row items-center px-6 bg-cover bg-center bg-no-repeat'
 				style={{
 					backgroundImage: `url(${herobg.src})`,
 				}}>
