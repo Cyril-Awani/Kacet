@@ -1,22 +1,37 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import axios from 'axios'; // Ensure axios is installed
+import axios from 'axios';
 import Derivbg from '@/app/assets/Deriv_Logo.jpg';
 import Crypto from '@/app/assets/Crypto.png';
 import Giftcard from '@/app/assets/Gift-card.webp';
 import { DollarSign, ArrowUpCircle, Gift } from 'lucide-react';
 
+type DerivSubTab = 'deposit' | 'withdrawal';
+type CryptoSubTab = 'buy' | 'sell';
+type GiftCardSubTab = 'sell';
+type Tab = 'deriv' | 'cryptocurrency' | 'giftcards';
+
+interface Rates {
+	deriv: {
+		deposit: number;
+		withdrawal: number;
+	};
+	cryptocurrency: Record<string, { buy: number; sell: number }>;
+	giftcards: Record<string, number>;
+}
+
 const Tabs = () => {
-	const [activeTab, setActiveTab] = useState('deriv');
-	const [activeSubTab, setActiveSubTab] = useState('deposit');
+	const [activeTab, setActiveTab] = useState<Tab>('deriv');
+	const [activeSubTab, setActiveSubTab] = useState<
+		DerivSubTab | CryptoSubTab | GiftCardSubTab
+	>('deposit');
 	const [selectedCrypto, setSelectedCrypto] = useState('Bitcoin');
 	const [selectedGiftcard, setSelectedGiftcard] = useState('Amazon $25');
 	const [inputValue, setInputValue] = useState<number>(0);
 	const [result, setResult] = useState<number>(0);
 
-	// State to store dynamic rates fetched from the API
-	const [rates, setRates] = useState({
+	const [rates, setRates] = useState<Rates>({
 		deriv: { deposit: 1730, withdrawal: 1700 },
 		cryptocurrency: {
 			Bitcoin: { buy: 1750, sell: 1680 },
@@ -35,23 +50,18 @@ const Tabs = () => {
 		},
 	});
 
-	// Fetch rates from backend (example API)
 	useEffect(() => {
 		const fetchRates = async () => {
 			try {
-				const response = await axios.get('/api/getRates'); // Fetch rates from the API
-				setRates(response.data); // Store the rates data in the state
+				const response = await axios.get<Rates>('/api/getRates');
+				setRates(response.data);
 			} catch (error) {
 				console.error('Error fetching rates:', error);
 			}
 		};
 
-		fetchRates(); // Call the function to fetch rates
-	}, []); // Empty dependency array ensures this runs only once when the component mounts
-
-	if (!rates) {
-		return <p>Loading rates...</p>; // Show loading text while fetching data
-	}
+		fetchRates();
+	}, []);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = parseFloat(e.target.value);
@@ -62,26 +72,36 @@ const Tabs = () => {
 			setInputValue(value);
 			let currentRate = 0;
 
-			if (activeTab === 'deriv') {
-				currentRate = rates.deriv[activeSubTab] || 0;
-			} else if (activeTab === 'cryptocurrency') {
-				currentRate = rates.cryptocurrency[selectedCrypto]?.[activeSubTab] || 0;
-			} else if (activeTab === 'giftcards') {
-				currentRate = rates.giftcards[selectedGiftcard] || 0;
+			if (activeTab === 'deriv' && activeSubTab in rates.deriv) {
+				currentRate = rates.deriv[activeSubTab as DerivSubTab];
+			} else if (
+				activeTab === 'cryptocurrency' &&
+				selectedCrypto in rates.cryptocurrency
+			) {
+				currentRate =
+					rates.cryptocurrency[selectedCrypto][activeSubTab as CryptoSubTab] ||
+					0;
+			} else if (
+				activeTab === 'giftcards' &&
+				selectedGiftcard in rates.giftcards
+			) {
+				currentRate = rates.giftcards[selectedGiftcard];
 			}
 
 			setResult(value * currentRate);
 		}
 	};
-
-	const handleTabClick = (tab: string) => {
+	const tabOptions: Tab[] = ['deriv', 'giftcards', 'cryptocurrency'];
+	const handleTabClick = (tab: Tab) => {
 		setActiveTab(tab);
 		setActiveSubTab(tab === 'deriv' ? 'deposit' : 'sell');
 		setInputValue(0);
 		setResult(0);
 	};
 
-	const handleSubTabClick = (subTab: string) => {
+	const handleSubTabClick = (
+		subTab: DerivSubTab | CryptoSubTab | GiftCardSubTab,
+	) => {
 		setActiveSubTab(subTab);
 		setInputValue(0);
 		setResult(0);
@@ -129,11 +149,11 @@ const Tabs = () => {
 	];
 
 	return (
-		<div className='relative max-w-md mx-auto mt-3 rounded-lg'>
+		<div className='relative max-w-md mx-auto rounded-lg'>
 			<div className='absolute inset-0 bg-black bg-opacity-90 rounded-lg flex items-center justify-center max-w-[500px] w-full'></div>
 			{/* Main Tabs */}
 			<div className='relative flex justify-between'>
-				{['deriv', 'giftcards', 'cryptocurrency'].map((tab) => (
+				{tabOptions.map((tab) => (
 					<button
 						key={tab}
 						className={`py-2 px-4 text-xs text-black font-bold uppercase flex items-center transition-colors duration-200 ${
@@ -163,7 +183,7 @@ const Tabs = () => {
 									? ' text-white scale-125 font-black'
 									: 'text-gray-400 hover:border-b-4 hover:border-white'
 							}`}
-							onClick={() => handleSubTabClick(subTab)}>
+							onClick={() => handleSubTabClick(subTab as DerivSubTab)}>
 							{subTab.charAt(0).toUpperCase() + subTab.slice(1)}
 						</button>
 					))}
@@ -187,7 +207,7 @@ const Tabs = () => {
 									? ' text-white scale-125 font-black'
 									: 'text-gray-400 hover:border-b-4 hover:border-white'
 							}`}
-							onClick={() => handleSubTabClick(subTab)}>
+							onClick={() => handleSubTabClick(subTab as CryptoSubTab)}>
 							{subTab.charAt(0).toUpperCase() + subTab.slice(1)}
 						</button>
 					))}

@@ -15,20 +15,20 @@ export const Nav = () => {
 
 	// Helper function to determine if a link is active
 	const isActive = (href: string) =>
-		pathname === href ? 'text-yellow-500' : 'hover:text-yellow-500';
+		pathname === href ? 'text-white' : 'hover:text-white';
 
 	return (
-		<nav className='bg-black top-0 left-0 w-full text-white px-6 py-4 z-50'>
+		<nav className='bg-transparent absolute top-0 left-0 w-full  text-white px-6 py-4 z-50'>
 			<div className='container mx-auto flex justify-between items-center'>
 				{/* Logo on the left */}
-				<div className='text-2xl font-bold'>
+				<div className='text-2xl left-0 font-bold'>
 					<Link href='/' className={isActive('/')}>
 						KacetXchange
 					</Link>
 				</div>
 
 				{/* Hamburger Icon for mobile */}
-				<div className='md:hidden'>
+				<div className='hidden'>
 					<button onClick={toggleMenu} className='focus:outline-none'>
 						{isOpen ? (
 							<X className='h-6 w-6 text-white' />
@@ -39,7 +39,7 @@ export const Nav = () => {
 				</div>
 
 				{/* Nav items - hidden on mobile, visible on desktop */}
-				<div className='space-x-8 hidden md:flex'>
+				<div className='space-x-8 hidden'>
 					<Link href='/' className={isActive('/')}>
 						Home
 					</Link>

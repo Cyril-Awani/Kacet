@@ -73,32 +73,32 @@ export default function Home() {
 				style={{
 					backgroundImage: `url(${herobg.src})`,
 				}}>
-				<div className='grid grid-cols-1 md:grid-cols-2 w-full'>
+				<div className='grid mt-14 grid-cols-1 md:grid-cols-2 gap-1  w-full'>
 					<div className='flex flex-col items-center justify-center relative mb-8 md:mb-0 text-center md:text-left'>
-						<h1 className='text-4xl md:text-5xl font-bold mb-4 pt-8 text-white'>
+						<h1 className='text-4xl md:text-4xl lg:text-5xl font-bold mb-4 pt-8 text-white'>
 							Buy & Sell Bitcoin Securely
 						</h1>
-						<p className='text-lg md:text-xl mb-6'>
+						<p className='text-lg md:text-xl mb-2'>
 							Trade your digital assets instantly with the best rates, swiftly
 							and securely.
 						</p>
-						<div className='flex md:block'>
-							<div className='px-8 py-2'>
+						<div className='flex justify-center md:justify-start gap-1'>
+							<div className='px-8 md:px-0 lg:px-6 py-2'>
 								<div className='grid'>
 									<div className='relative group mw-[300px]'>
 										<div className='absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt' />
 										<button className='relative px-6 py-3 bg-black rounded-lg flex items-center justify-center space-x-4'>
 											<span className='text-indigo-400 group-hover:text-gray-100 transition duration-200 flex items-center space-x-2'>
 												<span>Follow us</span>
-												<span className='hidden md:inline'>&darr;</span>
-												<span className='inline sm:hidden'>&rarr;</span>
+
+												<span className='inline'>&rarr;</span>
 											</span>
 										</button>
 									</div>
 								</div>
 							</div>
 
-							<div className='flex space-x-6 mt-4'>
+							<div className='flex space-x-6 mt-3'>
 								{[
 									{ Icon: FaFacebook, gradient: 'from-blue-600 to-blue-500' },
 									{
