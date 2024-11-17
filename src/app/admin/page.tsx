@@ -206,6 +206,26 @@ const Admin = () => {
 						placeholder='Ethereum sell rate'
 					/>
 				</div>
+				<div className='flex justify-between'>
+					<label className='w-1/2'>USDT Buy Rate</label>
+					<input
+						type='number'
+						value={usdtBuy}
+						onChange={(e) => setUsdtBuy(e.target.value)}
+						className='w-1/2 border rounded px-3 py-2'
+						placeholder='Ethereum buy rate'
+					/>
+				</div>
+				<div className='flex justify-between'>
+					<label className='w-1/2'>USDT Sell Rate</label>
+					<input
+						type='number'
+						value={usdtSell}
+						onChange={(e) => setUsdtSell(e.target.value)}
+						className='w-1/2 border rounded px-3 py-2'
+						placeholder='Ethereum sell rate'
+					/>
+				</div>
 
 				{/* Add Giftcard Rates */}
 				<div className='flex justify-between'>
@@ -213,6 +233,26 @@ const Admin = () => {
 					<input
 						type='number'
 						value={giftCardAmazon25}
+						onChange={(e) => setGiftCardAmazon25(e.target.value)}
+						className='w-1/2 border rounded px-3 py-2'
+						placeholder='Giftcard $25 rate'
+					/>
+				</div>
+								<div className='flex justify-between'>
+					<label className='w-1/2'>Amazon $50 Giftcard Rate</label>
+					<input
+						type='number'
+						value={giftCardAmazon50}
+						onChange={(e) => setGiftCardAmazon25(e.target.value)}
+						className='w-1/2 border rounded px-3 py-2'
+						placeholder='Giftcard $25 rate'
+					/>
+				</div>
+								<div className='flex justify-between'>
+					<label className='w-1/2'>Amazon $100 Giftcard Rate</label>
+					<input
+						type='number'
+						value={giftCardAmazon100}
 						onChange={(e) => setGiftCardAmazon25(e.target.value)}
 						className='w-1/2 border rounded px-3 py-2'
 						placeholder='Giftcard $25 rate'
