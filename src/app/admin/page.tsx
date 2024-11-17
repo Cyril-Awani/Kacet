@@ -238,24 +238,24 @@ const Admin = () => {
 						placeholder='Giftcard $25 rate'
 					/>
 				</div>
-								<div className='flex justify-between'>
+				<div className='flex justify-between'>
 					<label className='w-1/2'>Amazon $50 Giftcard Rate</label>
 					<input
 						type='number'
 						value={giftCardAmazon50}
-						onChange={(e) => setGiftCardAmazon25(e.target.value)}
+						onChange={(e) => setGiftCardAmazon50(e.target.value)}
 						className='w-1/2 border rounded px-3 py-2'
-						placeholder='Giftcard $25 rate'
+						placeholder='Giftcard $50 rate'
 					/>
 				</div>
-								<div className='flex justify-between'>
+				<div className='flex justify-between'>
 					<label className='w-1/2'>Amazon $100 Giftcard Rate</label>
 					<input
 						type='number'
 						value={giftCardAmazon100}
-						onChange={(e) => setGiftCardAmazon25(e.target.value)}
+						onChange={(e) => setGiftCardAmazon100(e.target.value)}
 						className='w-1/2 border rounded px-3 py-2'
-						placeholder='Giftcard $25 rate'
+						placeholder='Giftcard $100 rate'
 					/>
 				</div>
 
