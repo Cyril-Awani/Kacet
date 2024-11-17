@@ -69,12 +69,12 @@ export default function Home() {
 		<div className='bg-white text-white'>
 			<Nav />
 			<section
-				className='h-[100vh] md:h-[60vh] relative flex flex-col md:flex-row items-center px-6 bg-cover bg-center bg-no-repeat'
+				className='relative flex flex-col md:flex-row pb-2 items-center px-6 bg-cover bg-center bg-no-repeat'
 				style={{
 					backgroundImage: `url(${herobg.src})`,
 				}}>
 				<div className='grid mt-14 grid-cols-1 md:grid-cols-2 gap-1  w-full'>
-					<div className='flex flex-col items-center justify-center relative mb-8 md:mb-0 text-center md:text-left'>
+					<div className='flex flex-col items-center justify-center relative mb-1 md:mb-0 text-center md:text-left'>
 						<h1 className='text-4xl md:text-4xl lg:text-5xl font-bold mb-4 pt-8 text-white'>
 							Buy & Sell Bitcoin Securely
 						</h1>
