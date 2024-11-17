@@ -12,7 +12,7 @@ import tether from '@/app/assets/tether.svg';
 import herobg from '@/app/assets/herobg.jpg';
 import { FaTelegramPlane } from 'react-icons/fa';
 import Tabs from './components/Tabs';
-import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaInstagram } from 'react-icons/fa';
 import { FaClockRotateLeft, FaXTwitter } from 'react-icons/fa6';
 import { RiSecurePaymentLine } from 'react-icons/ri';
 import { GiReceiveMoney, GiTakeMyMoney } from 'react-icons/gi';
@@ -98,28 +98,43 @@ export default function Home() {
 								</div>
 							</div>
 
-							<div className='flex space-x-6 mt-3'>
-								{[
-									{ Icon: FaFacebook, gradient: 'from-blue-600 to-blue-500' },
-									{
-										Icon: FaInstagram,
-										gradient: 'from-pink-500 via-red-500 to-yellow-500',
-									},
-									{ Icon: FaXTwitter, gradient: 'from-blue-400 to-blue-300' },
-								].map(({ Icon, gradient }, index) => (
-									<button
-										key={index}
-										className='w-10 h-10 flex items-center justify-center rounded-full relative overflow-hidden bg-white shadow-md shadow-gray-200 group transition-all duration-500'>
-										<div
-											className={`absolute top-full left-0 w-full h-full rounded-full bg-gradient-to-r ${gradient} z-0 transition-all duration-500 group-hover:top-0`}
-										/>
-										<Icon
-											className='text-gray-900 relative z-10 transition-all duration-500 group-hover:text-white'
-											size={24}
-										/>
-									</button>
-								))}
-							</div>
+<div className='flex space-x-6 mt-3'>
+  {[
+    {
+      Icon: FaTelegramPlane,
+      gradient: 'from-blue-600 to-blue-500',
+      link: 'https://t.me/KACETXChange',
+    },
+    {
+      Icon: FaInstagram,
+      gradient: 'from-pink-500 via-red-500 to-yellow-500',
+      link: 'https://www.instagram.com/kacet_x_change',
+    },
+    {
+      Icon: FaXTwitter,
+      gradient: 'from-blue-400 to-blue-300',
+      link: 'https://twitter.com/kacetx',
+    },
+  ].map(({ Icon, gradient, link }, index) => (
+    <Link key={index} href={link} passHref>
+      <a
+        target='_blank'
+        rel='noopener noreferrer'
+        className='w-10 h-10 flex items-center justify-center rounded-full relative overflow-hidden bg-white shadow-md shadow-gray-200 group transition-all duration-500'
+      >
+        <div
+          className={`absolute top-full left-0 w-full h-full rounded-full bg-gradient-to-r ${gradient} z-0 transition-all duration-500 group-hover:top-0`}
+        />
+        <Icon
+          className='text-gray-900 relative z-10 transition-all duration-500 group-hover:text-white'
+          size={24}
+        />
+      </a>
+    </Link>
+  ))}
+</div>
+
+
 						</div>
 					</div>
 
