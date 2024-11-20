@@ -267,7 +267,7 @@ export default function Home() {
 							<div className='relative group max-w-[200px]'>
 								<div className='absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt max-w-[150]' />
 
-								<Link href='https://t.me/KACETEXCHANGE' passHref legacyBehavior>
+								<Link href='https://t.me/KACETXEXCHANGE' passHref legacyBehavior>
 									<a target='_blank' rel='noopener noreferrer'>
 										<button className='relative px-6 py-3 bg-black rounded-lg leading-none flex items-center space-x-4'>
 											<span className='text-gray-100'>Join Us</span>
