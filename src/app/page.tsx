@@ -180,7 +180,7 @@ export default function Home() {
 								href='https://wa.me/+2348114310177'
 								target='_blank'
 								rel='noopener noreferrer'
-								className='block' // Make the entire div clickable
+								className='block'
 							>
 								<div className='bg-indigo-50 rounded-lg flex justify-center items-center mb-5 w-20 h-20 mx-auto transition-all duration-500 group-hover:bg-indigo-600'>
 									<GiTakeMyMoney
@@ -201,8 +201,6 @@ export default function Home() {
 								target='_blank'
 								rel='noopener noreferrer'
 								className='block'>
-								{' '}
-								// Make the entire div clickable
 								<div className='bg-pink-50 rounded-lg flex justify-center items-center mb-5 w-20 h-20 mx-auto transition-all duration-500 group-hover:bg-pink-600'>
 									<GiReceiveMoney
 										className='text-pink-600 group-hover:text-white'
