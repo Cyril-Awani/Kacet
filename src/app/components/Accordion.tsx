@@ -11,12 +11,12 @@ const accordionData: AccordionItem[] = [
 	{
 		title: 'How does this platform work?',
 		content:
-			'This platform enables users to trade cryptocurrency, gift cards, and Deriv funds securely and easily and directly with Kacet.',
+			'This platform enables users to trade cryptocurrency, gift cards, and Deriv funds securely and easily and directly with Kacet Xchange. Users can deposit funds, buy or sell cryptocurrencies, and exchange gift cards securely and conveniently.',
 	},
 	{
 		title: 'What payment methods are available?',
 		content:
-			'We support various payment methods including bank transfer, credit/debit cards, and cryptocurrency.',
+			'We support various payment methods including Online Banks,Digital Wallets,Cash and cryptocurrency.',
 	},
 	{
 		title: 'Can I trust this KacetXchange with my data?',
@@ -24,7 +24,8 @@ const accordionData: AccordionItem[] = [
 	},
 	{
 		title: 'How can I contact support?',
-		content: 'You can reach out directly via Whatsapp',
+		content:
+			'You can reach out directly via any of our Social Links on the Website.',
 	},
 ];
 
