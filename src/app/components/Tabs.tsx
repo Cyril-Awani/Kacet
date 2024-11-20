@@ -27,7 +27,9 @@ const Tabs = () => {
 		DerivSubTab | CryptoSubTab | GiftCardSubTab
 	>('deposit');
 	const [selectedCrypto, setSelectedCrypto] = useState('Bitcoin');
-	const [selectedGiftcard, setSelectedGiftcard] = useState('Amazon $25');
+	const [selectedGiftcardCategory, setSelectedGiftcardCategory] =
+		useState<keyof typeof giftcardCategories>('iTunes');
+	const [selectedGiftcard, setSelectedGiftcard] = useState('iTunes US $10-$90');
 	const [inputValue, setInputValue] = useState<number>(0);
 	const [result, setResult] = useState<number>(0);
 
@@ -38,15 +40,38 @@ const Tabs = () => {
 			Ethereum: { buy: 1800, sell: 1720 },
 			USDT: { buy: 1600, sell: 1550 },
 			Litecoin: { buy: 600, sell: 550 },
+			Solana: { buy: 600, sell: 550 },
 		},
 		giftcards: {
+			// Amazon giftcards
 			'Amazon $25': 1550,
 			'Amazon $50': 1270,
 			'Amazon $100': 1790,
+			'Amazon UK $10-$100': 1450,
+			'Amazon Germany $10-$100': 1600,
+			'Amazon US $10-$90': 1500,
+			'Amazon US $100': 1780,
+			'Amazon UK': 1700,
+
+			// iTunes giftcards
 			'iTunes $25': 1780,
 			'iTunes $50': 1730,
 			'iTunes $100': 1787,
-			'Google Play': 1700,
+			'iTunes US $10-$90': 1800,
+			'iTunes US $100/$150/$200': 1850,
+			'iTunes UK': 1720,
+			'iTunes Germany': 1730,
+
+			// Google Play giftcards
+			'Google Play US': 1700,
+			'Google Play UK': 1680,
+			'Google Play Other Countries': 1600,
+
+			// Other giftcards
+			'Nike $100-$500': 1450,
+			'Steam USD': 1500,
+			'X-Box $10-$250': 1550,
+			'Razer Gold $10-$500': 1600,
 		},
 	});
 
@@ -62,6 +87,36 @@ const Tabs = () => {
 
 		fetchRates();
 	}, []);
+
+	const giftcardCategories: {
+		iTunes: string[];
+		GooglePlay: string[];
+		Amazon: string[];
+		Others: string[];
+	} = {
+		iTunes: [
+			'iTunes US $10-$90',
+			'iTunes US $100/$150/$200',
+			'iTunes UK',
+			'iTunes Germany',
+		],
+		GooglePlay: [
+			'Google Play US',
+			'Google Play UK',
+			'Google Play Other Countries',
+		],
+		Amazon: [
+			'Amazon US $10-$90',
+			'Amazon UK $10-$100',
+			'Amazon Germany $10-$100',
+		],
+		Others: [
+			'Nike $100-$500',
+			'Steam USD',
+			'X-Box $10-$250',
+			'Razer Gold $10-$500',
+		],
+	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = parseFloat(e.target.value);
@@ -85,12 +140,14 @@ const Tabs = () => {
 				activeTab === 'giftcards' &&
 				selectedGiftcard in rates.giftcards
 			) {
-				currentRate = rates.giftcards[selectedGiftcard];
+				currentRate = rates.giftcards[selectedGiftcard]; // Use the correct rate for giftcards
 			}
 
+			console.log('Current rate:', currentRate);
 			setResult(value * currentRate);
 		}
 	};
+
 	const tabOptions: Tab[] = ['deriv', 'giftcards', 'cryptocurrency'];
 	const handleTabClick = (tab: Tab) => {
 		setActiveTab(tab);
@@ -137,16 +194,22 @@ const Tabs = () => {
 		if (activeTab === 'giftcards') return Giftcard;
 	};
 
-	const cryptoOptions = ['Bitcoin', 'Ethereum', 'Litecoin', 'USDT'];
-	const giftcardOptions = [
-		'Amazon $25',
-		'Amazon $50',
-		'Amazon $100',
-		'iTunes $25',
-		'iTunes $50',
-		'iTunes $100',
-		'Google Play',
-	];
+	const cryptoOptions = ['Bitcoin', 'Ethereum', 'Litecoin', 'USDT', 'Solana'];
+	const renderGiftcardSubOptions = () => {
+		const options = giftcardCategories[selectedGiftcardCategory];
+		return (
+			<select
+				value={selectedGiftcard}
+				onChange={(e) => setSelectedGiftcard(e.target.value)}
+				className='border text-black rounded-lg p-2 w-full mt-4'>
+				{options.map((option: string) => (
+					<option key={option} value={option}>
+						{option}
+					</option>
+				))}
+			</select>
+		);
+	};
 
 	return (
 		<div className='relative max-w-md mx-auto rounded-lg'>
@@ -262,16 +325,23 @@ const Tabs = () => {
 								</select>
 							)}
 							{activeTab === 'giftcards' && (
-								<select
-									value={selectedGiftcard}
-									onChange={(e) => setSelectedGiftcard(e.target.value)}
-									className='border text-black rounded-lg p-2 w-full mt-4'>
-									{giftcardOptions.map((option) => (
-										<option key={option} value={option}>
-											{option}
-										</option>
-									))}
-								</select>
+								<div>
+									<select
+										value={selectedGiftcardCategory}
+										onChange={(e) =>
+											setSelectedGiftcardCategory(
+												e.target.value as keyof typeof giftcardCategories,
+											)
+										}
+										className='border text-black rounded-lg p-2 w-full mt-4'>
+										{Object.keys(giftcardCategories).map((category) => (
+											<option key={category} value={category}>
+												{category}
+											</option>
+										))}
+									</select>
+									{renderGiftcardSubOptions()}
+								</div>
 							)}
 							{/* Input Field */}
 							<div className='flex items-center mt-4'>
