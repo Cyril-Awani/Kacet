@@ -29,39 +29,45 @@ export default function Home() {
 	const paymentImages = [
 		{
 			src: cashapp,
-			alt: 'recieve cashapp payment method',
+			alt: 'Receive CashApp payment method',
 			width: 200,
 			height: 100,
+			link: 'https://wa.me/+2348114310177?text=Available%20For%20Cashapp%20Transaction?', // Replace with your WhatsApp link
 		},
 		{
 			src: bitcoin,
-			alt: 'recieve bitcoin payment method',
+			alt: 'Receive Bitcoin payment method',
 			width: 200,
 			height: 100,
+			link: 'https://wa.me/+2348114310177?text=Available%20For%20Bitcoin%20Transaction?',
 		},
 		{
 			src: deriv,
-			alt: 'deposit and withdraw deriv payment agent',
+			alt: 'Deposit and withdraw Deriv payment agent',
 			width: 200,
 			height: 100,
+			link: 'https://wa.me/+2348114310177?text=Available%20For%20Deriv%20Transaction?',
 		},
 		{
 			src: ether,
-			alt: 'recieve ether payment method',
+			alt: 'Receive Ether payment method',
 			width: 200,
 			height: 100,
+			link: 'https://wa.me/+2348114310177?text=Available%20For%20Ethereum%20Transaction?',
 		},
 		{
 			src: paypal,
-			alt: 'recieve paypal payment method',
+			alt: 'Receive PayPal payment method',
 			width: 200,
 			height: 100,
+			link: 'https://wa.me/+2348114310177?text=Available%20For%20Paypal%20Transaction?',
 		},
 		{
 			src: tether,
-			alt: 'recieve tether payment method',
+			alt: 'Receive Tether payment method',
 			width: 200,
 			height: 100,
+			link: 'https://wa.me/+2348114310177?text=Available%20For%20USDT%20Transaction?',
 		},
 	];
 
@@ -144,17 +150,13 @@ export default function Home() {
 				</div>
 			</section>
 
-			<section className='py-2 px-4'>
-				<div className='grid grid-cols-3 justify-center items-center gap-2 md:grid-cols-6 xl:grid-cols-none xl:flex xl:justify-between'>
-					{paymentImages.map(({ src, alt }, index) => (
-						<div key={index} className=''>
-							<Image
-								src={src}
-								alt={alt}
-								width={100} // Set width directly
-								height={55} // Set height directly
-								priority // Optional, if the image is important
-							/>
+			<section className='py-4 px-4'>
+				<div className='grid grid-cols-3 justify-center items-center gap-4 md:grid-cols-6 xl:grid-cols-none xl:flex xl:justify-between'>
+					{paymentImages.map(({ src, alt, link }, index) => (
+						<div key={index} className={`flex items-center justify-center p-4`}>
+							<a href={link} target='_blank' rel='noopener noreferrer'>
+								<Image src={src} alt={alt} width={100} height={55} priority />
+							</a>
 						</div>
 					))}
 				</div>
