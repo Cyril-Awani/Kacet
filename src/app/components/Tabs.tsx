@@ -176,7 +176,7 @@ const Tabs = () => {
 		} else if (activeTab === 'cryptocurrency') {
 			message = `I'd like to ${activeSubTab} $${inputValue} worth of ${selectedCrypto}`;
 		} else if (activeTab === 'giftcards') {
-			message = `I want to sell ${inputValue} ${selectedGiftcard} giftcards.`;
+			message = `I want to sell $${inputValue} ${selectedGiftcard} giftcards.`;
 			//₦${result.toLocaleString(),@ ₦${result.toLocaleString()}.
 		}
 
@@ -345,18 +345,22 @@ const Tabs = () => {
 							)}
 							{/* Input Field */}
 							<div className='flex items-center mt-4'>
-								<input
-									type='number'
-									className='border text-black rounded-lg p-2 w-full mr-2'
-									placeholder={
-										activeTab === 'giftcards'
-											? 'Number of gift cards'
-											: 'Amount'
-									}
-									value={inputValue}
-									onChange={handleInputChange}
-								/>
+								<div className='flex items-center bg-slate-50 border shadow-inner text-black rounded-lg w-full'>
+									<span className='px-3 bg-green text-black'>$</span>
+									<input
+										type='number'
+										className='border-0 text-black bg-white rounded-lg shadow-sm p-2 w-full focus:outline-none'
+										placeholder={
+											activeTab === 'giftcards'
+												? 'Number of gift cards'
+												: 'Amount'
+										}
+										value={inputValue}
+										onChange={handleInputChange}
+									/>
+								</div>
 							</div>
+
 							{/* Estimated Value Display */}
 							{/* {result > 0 && (
     <p className='mt-4'>
