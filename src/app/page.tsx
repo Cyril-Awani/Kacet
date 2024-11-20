@@ -104,43 +104,40 @@ export default function Home() {
 								</div>
 							</div>
 
-<div className='flex space-x-6 mt-3'>
-  {[
-    {
-      Icon: FaTelegramPlane,
-      gradient: 'from-blue-600 to-blue-500',
-      link: 'https://t.me/KACETXChange',
-    },
-    {
-      Icon: FaInstagram,
-      gradient: 'from-pink-500 via-red-500 to-yellow-500',
-      link: 'https://www.instagram.com/kacet_x_change',
-    },
-    {
-      Icon: FaXTwitter,
-      gradient: 'from-blue-400 to-blue-300',
-      link: 'https://x.com/BazunuFavour',
-    },
-  ].map(({ Icon, gradient, link }, index) => (
-    <Link key={index} href={link} passHref>
-      <a
-        target='_blank'
-        rel='noopener noreferrer'
-        className='w-10 h-10 flex items-center justify-center rounded-full relative overflow-hidden bg-white shadow-md shadow-gray-200 group transition-all duration-500'
-      >
-        <div
-          className={`absolute top-full left-0 w-full h-full rounded-full bg-gradient-to-r ${gradient} z-0 transition-all duration-500 group-hover:top-0`}
-        />
-        <Icon
-          className='text-gray-900 relative z-10 transition-all duration-500 group-hover:text-white'
-          size={24}
-        />
-      </a>
-    </Link>
-  ))}
-</div>
-
-
+							<div className='flex space-x-6 mt-3'>
+								{[
+									{
+										Icon: FaTelegramPlane,
+										gradient: 'from-blue-600 to-blue-500',
+										link: 'https://t.me/KACETXChange',
+									},
+									{
+										Icon: FaInstagram,
+										gradient: 'from-pink-500 via-red-500 to-yellow-500',
+										link: 'https://www.instagram.com/kacet_x_change',
+									},
+									{
+										Icon: FaXTwitter,
+										gradient: 'from-blue-400 to-blue-300',
+										link: 'https://x.com/BazunuFavour',
+									},
+								].map(({ Icon, gradient, link }, index) => (
+									<Link key={index} href={link} passHref>
+										<a
+											target='_blank'
+											rel='noopener noreferrer'
+											className='w-10 h-10 flex items-center justify-center rounded-full relative overflow-hidden bg-white shadow-md shadow-gray-200 group transition-all duration-500'>
+											<div
+												className={`absolute top-full left-0 w-full h-full rounded-full bg-gradient-to-r ${gradient} z-0 transition-all duration-500 group-hover:top-0`}
+											/>
+											<Icon
+												className='text-gray-900 relative z-10 transition-all duration-500 group-hover:text-white'
+												size={24}
+											/>
+										</a>
+									</Link>
+								))}
+							</div>
 						</div>
 					</div>
 
@@ -180,36 +177,44 @@ export default function Home() {
 					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8'>
 						<div className='text-center max-w-sm mx-auto group'>
 							<Link
-    href="https://wa.me/+2348114310177"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="block" // Make the entire div clickable
-  >
-							<div className='bg-indigo-50 rounded-lg flex justify-center items-center mb-5 w-20 h-20 mx-auto transition-all duration-500 group-hover:bg-indigo-600'>
-								<GiTakeMyMoney
-									className='text-indigo-600 group-hover:text-white'
-									size={30}
-								/>
-							</div>
-							<h4 className='text-lg font-medium text-gray-900 mb-3'>Buy</h4>
-							<p className='text-sm text-gray-500'>
-								Easily buy cryptocurrency, gift cards, and Deriv funds with a
-								few clicks.
-							</p>
-								</Link>
+								href='https://wa.me/+2348114310177'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='block' // Make the entire div clickable
+							>
+								<div className='bg-indigo-50 rounded-lg flex justify-center items-center mb-5 w-20 h-20 mx-auto transition-all duration-500 group-hover:bg-indigo-600'>
+									<GiTakeMyMoney
+										className='text-indigo-600 group-hover:text-white'
+										size={30}
+									/>
+								</div>
+								<h4 className='text-lg font-medium text-gray-900 mb-3'>Buy</h4>
+								<p className='text-sm text-gray-500'>
+									Easily buy cryptocurrency, gift cards, and Deriv funds with a
+									few clicks.
+								</p>
+							</Link>
 						</div>
 						<div className='text-center max-w-sm mx-auto group'>
-							<div className='bg-pink-50 rounded-lg flex justify-center items-center mb-5 w-20 h-20 mx-auto transition-all duration-500 group-hover:bg-pink-600'>
-								<GiReceiveMoney
-									className='text-pink-600 group-hover:text-white'
-									size={30}
-								/>
-							</div>
-							<h4 className='text-lg font-medium text-gray-900 mb-3'>Sell</h4>
-							<p className='text-sm text-gray-500'>
-								Get instant value when you sell your digital assets with our
-								platform.
-							</p>
+							<Link
+								href='https://wa.me/+2348114310177'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='block'>
+								{' '}
+								// Make the entire div clickable
+								<div className='bg-pink-50 rounded-lg flex justify-center items-center mb-5 w-20 h-20 mx-auto transition-all duration-500 group-hover:bg-pink-600'>
+									<GiReceiveMoney
+										className='text-pink-600 group-hover:text-white'
+										size={30}
+									/>
+								</div>
+								<h4 className='text-lg font-medium text-gray-900 mb-3'>Sell</h4>
+								<p className='text-sm text-gray-500'>
+									Get instant value when you sell your digital assets with our
+									platform.
+								</p>
+							</Link>
 						</div>
 						<div className='text-center max-w-sm mx-auto group'>
 							<div className='bg-teal-50 rounded-lg flex justify-center items-center mb-5 w-20 h-20 mx-auto transition-all duration-500 group-hover:bg-teal-600'>
