@@ -179,6 +179,12 @@ export default function Home() {
 					</div>
 					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8'>
 						<div className='text-center max-w-sm mx-auto group'>
+							<Link
+    href="https://wa.me/+2348114310177"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block" // Make the entire div clickable
+  >
 							<div className='bg-indigo-50 rounded-lg flex justify-center items-center mb-5 w-20 h-20 mx-auto transition-all duration-500 group-hover:bg-indigo-600'>
 								<GiTakeMyMoney
 									className='text-indigo-600 group-hover:text-white'
@@ -190,6 +196,7 @@ export default function Home() {
 								Easily buy cryptocurrency, gift cards, and Deriv funds with a
 								few clicks.
 							</p>
+								</Link>
 						</div>
 						<div className='text-center max-w-sm mx-auto group'>
 							<div className='bg-pink-50 rounded-lg flex justify-center items-center mb-5 w-20 h-20 mx-auto transition-all duration-500 group-hover:bg-pink-600'>
