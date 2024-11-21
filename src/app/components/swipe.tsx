@@ -63,7 +63,7 @@ const Swipe = () => {
             height={500}
             className="w-full h-full object-cover rounded-lg"
           />
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white text-xl font-bold px-4 py-2 bg-black bg-opacity-50 rounded-lg">
+          <div className="absolute w-full bottom-10 left-1/2 transform -translate-x-1/2 text-white text-xl font-bold px-4 py-2 bg-black bg-opacity-50 rounded-lg">
             {images[currentIndex].text}
           </div>
         </div>
