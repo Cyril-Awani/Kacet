@@ -10,7 +10,7 @@ const Swipe = () => {
       src: Derivbg,
       alt: 'Deriv Logo',
       text: 'Deriv - Join Now and Learn the part to world Traders Success Stories',
-      link: 'https://track.deriv.com/_6v48JkFRkjGtyDlijdDk2Nd7ZgqdRLk/1/',
+      link: 'https://track.deriv.com/_6v48JkFRkjG6tyDIijdDK2Nd7ZgqdRLk/1/',
     },
     {
       src: Crypto,
@@ -48,43 +48,43 @@ const Swipe = () => {
   };
 
   return (
-    <div className='relative w-800 h-500 max-w-3xl mx-auto overflow-hidden rounded-lg shadow-lg'>
+    <div className="relative w-full max-w-3xl mx-auto overflow-hidden rounded-lg shadow-lg">
       <a
         href={images[currentIndex].link}
-        target='_blank'
-        rel='noopener noreferrer'
-        className='block' // Make the entire area clickable
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block" // Make the entire area clickable
       >
-        <div key={currentIndex}>
+        <div key={currentIndex} className="relative w-full h-500">
           <Image
             src={images[currentIndex].src}
             alt={images[currentIndex].alt}
             width={800}
             height={500}
-            className='w-full h-auto object-cover rounded-lg'
+            className="w-full h-full object-cover rounded-lg"
           />
-          <div className='absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white text-xl font-bold px-4 py-2 bg-black bg-opacity-50 rounded-lg'>
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white text-xl font-bold px-4 py-2 bg-black bg-opacity-50 rounded-lg">
             {images[currentIndex].text}
           </div>
         </div>
       </a>
 
-      <div className='absolute top-1/2 left-0 right-0 flex justify-between transform -translate-y-1/2'>
+      <div className="absolute top-1/2 left-0 right-0 flex justify-between transform -translate-y-1/2">
         <button
           onClick={handlePrevSlide}
-          className='text-black p-4 rounded-full hover:scale-105 transition-all'
+          className="text-black p-4 rounded-full hover:scale-105 transition-all"
         >
           ❮
         </button>
         <button
           onClick={handleNextSlide}
-          className='text-black p-4 rounded-full hover:scale-105 transition-all'
+          className="text-black p-4 rounded-full hover:scale-105 transition-all"
         >
           ❯
         </button>
       </div>
 
-      <div className='absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2'>
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {images.map((_, index) => (
           <span
             key={index}
