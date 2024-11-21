@@ -9,8 +9,8 @@ const Swipe = () => {
     {
       src: Derivbg,
       alt: 'Deriv Logo',
-      text: 'Deriv - A global leader in trading',
-      link: 'https://www.deriv.com',
+      text: 'Deriv - Join Now and Learn the part to world Traders Success Stories',
+      link: 'https://track.deriv.com/_6v48JkFRkjGtyDlijdDk2Nd7ZgqdRLk/1/',
     },
     {
       src: Crypto,
@@ -48,7 +48,7 @@ const Swipe = () => {
   };
 
   return (
-    <div className='relative w-full max-w-3xl mx-auto overflow-hidden rounded-lg shadow-lg'>
+    <div className='relative w-800 h-500 max-w-3xl mx-auto overflow-hidden rounded-lg shadow-lg'>
       <a
         href={images[currentIndex].link}
         target='_blank'
