@@ -19,6 +19,7 @@ import { GiReceiveMoney, GiTakeMyMoney } from 'react-icons/gi';
 import Accordion from './components/Accordion';
 import SpecificCoinsTable from './components/SpecificCoinsTable';
 import ForexTable from './components/ForexTable';
+import Swipe from './components/swipe';
 
 export default function Home() {
 	const router = useRouter();
@@ -156,6 +157,23 @@ export default function Home() {
 							</a>
 						</div>
 					))}
+				</div>
+			</section>
+			<section className='container mx-auto px-6 py-12'>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+					{/* Left Column */}
+					<div className='flex flex-col justify-center'>
+						<h2 className='text-3xl font-bold text-gray-900'>Left Column</h2>
+						<p className='mt-4 text-lg text-gray-600'>
+							This is the left column. It will appear alongside the right column
+							on medium and larger screens, and stack on smaller screens.
+						</p>
+					</div>
+
+					{/* Right Column */}
+					<div className='flex flex-col justify-center'>
+						<Swipe />
+					</div>
 				</div>
 			</section>
 
