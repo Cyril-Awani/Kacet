@@ -163,10 +163,10 @@ export default function Home() {
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
 					{/* Left Column */}
 					<div className='flex flex-col justify-center'>
-						<h2 className='text-3xl font-bold text-gray-900'>Left Column</h2>
+						<h2 className='text-3xl font-bold text-gray-900'>Open an Account</h2>
 						<p className='mt-4 text-lg text-gray-600'>
-							This is the left column. It will appear alongside the right column
-							on medium and larger screens, and stack on smaller screens.
+							Join our deriv to Learn Top tier traders technicalities, Financial
+							Management, and Trading Analysis needed for your growth
 						</p>
 					</div>
 
